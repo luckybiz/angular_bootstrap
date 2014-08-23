@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="biInterface">
+    <head>
+		<% include include/head.ejs %>
+    </head>
+    <body>
+    	<!-- Preloader -->
+		<div id="preloader">
+		    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+		</div>
+    	<div class="leftpanel">
+    		<% include include/leftpanel.ejs %>
+    	</div>
+    	<div class="mainpanel">
+    		<% include include/content.ejs %>
+        </div><!-- mainpanel -->
+        <div class="rightpanel">
+        	<% include include/rightpanel.ejs %>
+        </div><!-- rightpanel -->
+		<% include include/foot.ejs %>
+    </body>
+</html>

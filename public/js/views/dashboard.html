@@ -1,0 +1,88 @@
+<div class="page-header">
+	<h1>{{title}}</h1>
+</div>
+<div>
+	<button id="new-dashboard" class="btn btn-success" ng-click = "showManageModal(-1)">
+		<span>+ Dashboard</span>
+	</button>
+</div>
+
+<div>
+	<table ng-table="tableParams" class="table bi-table">
+		<tr ng-repeat="dashboard in dashboards track by $index">
+			<td data-title="'Title'" sortable="title">
+				{{dashboard.title}}
+			</td>
+			<td data-title="'Layout'">
+				<select ng-model='dashboard.layout' ng-options="lay._id as lay.title for lay in layouts"></select>
+			</td>
+			<td data-title="'Graph'">
+				<select ng-model='dashboard.graph' ng-options="graph._id as graph.title for graph in graphs"></select>
+			</td>
+			<td data-title="'Filter Predefined'">
+				{{dashboard.filter_predefined}}
+			</td>
+			<td data-title="'Filter UI'">
+				{{dashboard.filter_ui}}
+			</td>
+			<td data-title="'Action'">
+				<button type="button" class="btn btn-default" ng-click = "showManageModal($index)">
+					Manage
+				</button>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div id="manageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			×
+		</button>
+		<h3 id="myModalLabel">Management Dashboard</h3>
+	</div>
+
+	<div class="modal-body">
+		<div class="cnt_b">
+			<div class="formRow">
+					<div class="input-prepend">
+						<label>Title: </label><input type="text" ng-model="curDashboard.title"/>
+					</div>
+			</div>
+			<div class="formRow">
+					<div class="input-prepend">
+						<label>Layout: </label>
+						<select ng-model='curDashboard.layout' ng-options="lay._id as lay.title for lay in layouts"></select>
+					</div>
+			</div>
+			<div class="formRow">
+					<div class="input-prepend">
+						<label>Graph: </label>
+						<select ng-model='curDashboard.graph' ng-options="graph._id as graph.title for graph in graphs"></select>
+					</div>
+			</div>
+			<div class="formRow">
+					<div class="input-prepend">
+						<label>Filter Predefined: </label><input type="text" ng-model="curDashboard.filter_predefined"/>
+					</div>
+			</div>
+			<div class="formRow">
+					<div class="input-prepend">
+						<label>Filter UI: </label><input type="text" ng-model="curDashboard.filter_ui"/>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-inverse" type = "submit" ng-click="saveDashboard()">
+			Save Dashboard
+		</button>
+		<button class="btn btn-inverse" type = "submit" ng-show = "!newDashboard" ng-click = "deleteDashboard()">
+			Delete Dashboard
+		</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">
+			Close
+		</button>
+	</div>
+</div>
